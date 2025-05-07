@@ -180,9 +180,9 @@ func (s *Stmt) bindTimestamp(val driver.NamedValue, t Type, n int) (mapping.Stat
 		if err != nil {
 			return mapping.StateError, err
 		}
-		tMS := mapping.CreateTimestampS(*v)
-		state = mapping.BindValue(*s.preparedStmt, mapping.IdxT(n+1), tMS)
-		mapping.DestroyValue(&tMS)
+		ts := mapping.CreateTimestampS(*v)
+		state = mapping.BindValue(*s.preparedStmt, mapping.IdxT(n+1), ts)
+		mapping.DestroyValue(&ts)
 	case TYPE_TIMESTAMP_MS:
 		v, err := getMappedTimestampMS(val.Value)
 		if err != nil {
@@ -196,9 +196,9 @@ func (s *Stmt) bindTimestamp(val driver.NamedValue, t Type, n int) (mapping.Stat
 		if err != nil {
 			return mapping.StateError, err
 		}
-		tMS := mapping.CreateTimestampNS(*v)
-		state = mapping.BindValue(*s.preparedStmt, mapping.IdxT(n+1), tMS)
-		mapping.DestroyValue(&tMS)
+		tNS := mapping.CreateTimestampNS(*v)
+		state = mapping.BindValue(*s.preparedStmt, mapping.IdxT(n+1), tNS)
+		mapping.DestroyValue(&tNS)
 	}
 	return state, nil
 }
